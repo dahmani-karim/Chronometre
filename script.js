@@ -1,7 +1,7 @@
-//Les variables dont on a besoins
+//Déclarations des variables utiles
 var sp, btn_start, btn_stop, t, ms, s, mn, h;
 
-//fonction pour initialiser les variables quan,d la page se charge
+//fonction pour initialiser les variables au chargement de la page
 window.onload = function() {
     sp = document.getElementsByTagName('span');
     btn_start = document.getElementById('start');
@@ -10,8 +10,7 @@ window.onload = function() {
     ms = 0, s = 0, mn = 0, h = 0;
 }
 
-//mettre en place le compteur
-
+//fonction de compteur pour incrémenter le timer
 function update_chrono() {
     ms+=1;
     if(ms == 10){
@@ -27,8 +26,6 @@ function update_chrono() {
         h+=1;
     }
     //insertion des valeurs dans les spans
-    // [0] permet de selectionner le premier span
-    // [1] .......................le Deuxieme etc...
     sp[0].innerHTML = h + "h" ;
     sp[1].innerHTML = mn + "min" ;
     sp[2].innerHTML = s + "s" ;
@@ -36,26 +33,30 @@ function update_chrono() {
 
 }
 
-// mettre en place la fonction du bouton start
+//fonction du bouton start pour démarrer le chronomètre
 function start(){
-    //cette ligne de code execute la function update_chrono()
-    //toutes les 1ms
-    clearInterval(t); //supprime l'interval t créer précédemment
+    //remise à zéro de l'interval t
+    clearInterval(t);
+
+    //cette ligne de code execute la function update_chrono() toutes les 1ms
     t = setInterval(update_chrono,100);
 }
 
-// mettre en place la fonction d'arrêt du chronomètre
-
+//fonction du bouton stop pour arrêter le chronomètre
 function stop(){
-    clearInterval(t); //supprime l'interval t créer précédemment
+    //supprime l'interval t créer précédemment
+    clearInterval(t);
 }
 
-//mettre en place la fonction de remise à zero
+//fonction de remise à zero
 function reset(){
-    clearInterval(t); //supprime l'interval t créer précédemment
-    //remettre à zéro les valeurs
+    //supprime l'interval t créer précédemment
+    clearInterval(t);
+
+    //remise à zéro les valeurs des variables
     ms = 0, s = 0, mn = 0, h = 0;
-    //insérer les valeurs dans les spans
+
+    //insérer les nouvelles valeurs dans les spans
     sp[0].innerHTML = h + "h" ;
     sp[1].innerHTML = mn + "min" ;
     sp[2].innerHTML = s + "s" ;
